@@ -4,7 +4,14 @@ const email = document.getElementById('email').Value;
 const phonenumber = document.getElementById('phonenumber').Value;
 const password = document.getElementById('password').Value;
 const confirmpassword = document.getElementById('confirmpassword').Value;
+const grecaptcha = getElementsById ('grecaptcha').value;
 
+    
+
+// simple validation //
+if  (!grecaptcha === ''){
+    alert('Please fill in all fields');
+    return;
 // simple validation //
 if  (name === '' || email === '' ||  password === '' || confirmpassword === ''){
     alert('Please fill in all fields');
