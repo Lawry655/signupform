@@ -1,33 +1,39 @@
-function validateAndstoredata(){
-const name = document.getElementById('name').Value;
-const email = document.getElementById('email').Value;
-const phonenumber = document.getElementById('phonenumber').Value;
-const password = document.getElementById('password').Value;
-const confirmpassword = document.getElementById('confirmpassword').Value;
-const grecaptcha = getElementsById ('grecaptcha').value;
+function validateAndstoredata() {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const phonenumber = document.getElementById("phonenumber").value;
+  const password = document.getElementById("password").value;
+  const confirmpassword = document.getElementById("confirmpassword").value;
+  const recaptchaResponse = grecaptcha.getResponse();
 
-    
-
-// simple validation //
-if  (!grecaptcha === ''){
-    alert('Please fill in all fields');
+  // simple validation //
+  if (
+    name === "" ||
+    email === "" ||
+    phonenumber === "" ||
+    password === "" ||
+    confirmpassword === ""
+  ) {
+    alert("Please fill in all fields");
     return;
-// simple validation //
-if  (name === '' || email === '' ||  password === '' || confirmpassword === ''){
-    alert('Please fill in all fields');
+  }
+
+  // reCAPTCHA validation
+  if (recaptchaResponse.length === 0) {
+    alert("Please complete the reCAPTCHA");
     return;
+  }
+
+  // Store data in local storage
+  localStorage.setItem("name", name);
+  localStorage.setItem("email", email);
+  localStorage.setItem("phonenumber", phonenumber);
+  localStorage.setItem("password", password);
+  localStorage.setItem("confirmpassword", confirmpassword);
 }
 
-// Store data in all local storage 
-    localStorage.setItem('name', name);
-    localStorage.setItem("email", email);
-    localStorage.setItem("phonenumber", phonenumber);
-    localStorage.setItem("password", password);
-    localStorage.setItem("confirmpassword", confirmpassword);
+document
+  .getElementById("submit")
+  .addEventListener("click", validateAndstoredata);
 
-}
-document.getElementById('submit')
-addEventListener('click' ,storeuserdata);{
-document.getElementById('submitted')
-addEventListener('click',loaduserdata)
-}
+document.getElementById("submitted").addEventListener("click", loaduserdata);
